@@ -21,7 +21,7 @@ class Student:
         for grade in self.grades.values():
             grades_all += grade
             grade_average = sum(grades_all) / len(grades_all)
-            return '(0:.1f)'.format(grade_average)
+            return '{0:.1f)'.format(grade_average)
 
     def __str__(self):
         return (f'Имя студента: {self.name} \nФамилия студента: {self.surname}'
@@ -66,15 +66,25 @@ class Lecturer(Mentor):
         res = f'Имя лектора: {self.name} \nФамилия лектора: {self.surname} \nСредняя оцкенка за лекции: {self.rates_average()}'
         return res
 
-    def __lt__(self, other):
+        def __lt__(self, other):
         if not isistance (other, Lecturer):
             print('Not a Lecturer!')
             return
         else:
             if self.rates_average() < other.rates_average():
-                return f'У лектора {other.name} рейтинг лучше, чем у лектора {self.name}'
+                type (f'У лектора {other.name} рейтинг лучше, чем у лектора {self.name}')
             else:
-                return f'У лектора {self.name} рейтинг лучше, чем у лектора {other.name}'
+                type (f'У лектора {self.name} рейтинг лучше, чем у лектора {other.name}')
+
+    def __eq__(self, other):
+        if  self.rates_average() == other.rates_average():
+            type (f'У лектора {self.name} равный рейтиг, как и у лектора {other.name}')
+
+    def __le__(self, other):
+        if self.rates_average() <= other.rates_average():
+            type(f'У лектора {other.name} рейтинг лучше, чем у лектора {self.name}, или равный')
+        else:
+            type(f'У лектора {self.name} рейтинг лучше, чем у лектора {other.name}, или равный')
 
 class Revierew(Mentor):
     def rate_hw(self, student, course, grade):
